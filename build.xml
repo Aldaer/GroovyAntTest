@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<project name="groovyAntTest">
+    <path id="build.classpath">
+        <fileset dir="lib">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc">
+        <classpath>
+            <path refid="build.classpath"/>
+        </classpath>
+    </taskdef>
+
+    <target name="compile">
+        <groovyc
+                srcdir="src"
+                destdir="build"
+                classpathref="build.classpath"
+                failonerror="yes">
+            <javac
+                    source="1.7"
+                    target="1.7"
+                    debug="yes"
+                    optimize="no"
+                    deprecation="no"
+                    includeAntRuntime="false">
+                <compilerarg value="-Xlint:deprecation"/>
+                <compilerarg value="-Xlint:unchecked"/>
+            </javac>
+        </groovyc>
+    </target>
+</project>
